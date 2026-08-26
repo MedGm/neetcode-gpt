@@ -14,7 +14,7 @@ class Solution:
         # ReLU: max(0, z)
         # return round(your_answer, 5)
 
-        z = x @ w.T + b
+        z = np.dot(x, w.T) + b
         if activation == "sigmoid":
             z_clip = np.clip(z,-30,30)
             e_nz = 1 / (1 + np.exp(-z_clip))
