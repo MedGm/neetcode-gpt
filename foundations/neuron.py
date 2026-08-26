@@ -14,12 +14,11 @@ class Solution:
         # ReLU: max(0, z)
         # return round(your_answer, 5)
 
-        z = np.dot(x, w.T) + b
+        z = x @ w.T + b
         if activation == "sigmoid":
-            z_clip = np.clip(z,-30,30)
-            e_nz = 1 / (1 + np.exp(-z_clip))
-            e_z = np.exp(z_clip) / (1 + np.exp(z_clip))
-            return np.round(np.where(z>=0, e_nz, e_z), 5)
+            e_nz = np.exp(-z)
+            e_z = np.exp(z)
+            return np.round(np.where(z>=0, 1 / (1 + e_nz), e_z / (1 + e_z)), 5)
         elif activation == "relu":
             return np.round(max(0.0,z), 5)
 
