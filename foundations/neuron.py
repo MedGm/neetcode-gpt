@@ -16,8 +16,9 @@ class Solution:
 
         z = x @ w.T + b
         if activation == "sigmoid":
-            e_nz = np.exp(-z)
-            e_z = np.exp(z)
+            z_clipped = np.clip(z,-30,30)
+            e_nz = np.exp(-z_clipped)
+            e_z = np.exp(z_clipped)
             return np.round(np.where(z>=0, 1 / (1 + e_nz), e_z / (1 + e_z)), 5)
         elif activation == "relu":
             return np.round(max(0.0,z), 5)
