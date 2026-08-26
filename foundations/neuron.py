@@ -20,7 +20,7 @@ class Solution:
             e_nz = 1 / (1 + np.exp(-z_clip))
             e_z = np.exp(z_clip) / (1 + np.exp(z_clip))
             return np.round(np.where(z>=0, e_nz, e_z), 5)
-        else:
+        elif activation == "relu":
             return np.round(max(0.0,z), 5)
 
         return 0.0
